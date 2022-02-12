@@ -3,7 +3,7 @@ const mongoURI = "mongodb://localhost:27017/notes-app?readPreference=primary&app
 
 const connectToMongo = () => {
   mongoose.connect(mongoURI, () => {
-    console.log("Connected to Mongo!");
+    console.log("Connected to Mongo 💘");
   });
 };
 

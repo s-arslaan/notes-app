@@ -7,7 +7,7 @@ const router = express.Router();
 // ROUTE 1: Get All notes using: GET "api/notes/fetchallnotes" LOGIN REQUIRED
 router.get("/fetchallnotes", fetchuser, async (req, res) => {
   try {
-    const notes = await Notes.find({ user: req.user.id });
+    const notes = await Note.find({ user: req.user.id });
     res.json(notes);
   } catch (error) {
     console.error(error.message);
