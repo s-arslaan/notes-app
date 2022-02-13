@@ -46,7 +46,7 @@ router.post(
   }
 );
 
-// ROUTE 3: Update an existing Note using: POST "api/notes/updatenote" LOGIN REQUIRED
+// ROUTE 3: Update an existing Note using: PUT "api/notes/updatenote" LOGIN REQUIRED
 router.put("/updatenote/:id", fetchuser, async (req, res) => {
   const { title, description, tag } = req.body;
   try {
@@ -77,9 +77,29 @@ router.put("/updatenote/:id", fetchuser, async (req, res) => {
       { $set: newNote },
       { new: true }
     );
-    
-    res.json(note);
 
+    res.json(note);
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).send("Internal Server Error");
+  }
+});
+
+// ROUTE 4: Delete an existing Note using: DELETE "api/notes/deletenote" LOGIN REQUIRED
+router.delete("/deletenote/:id", fetchuser, async (req, res) => {
+  try {
+    // Find if the user is authorized to delete the note
+    let note = await Note.findById(req.params.id);
+    if (!note) {
+      return res.status(404).send("Not Found!");
+    }
+    if (note.user.toString() !== req.user.id) {
+      return res.status(401).send("Unauthorized");
+    }
+
+    // Find the Note and delete it
+    note = await Note.findByIdAndDelete(req.params.id);
+    res.json({ Success: "Successfully deleted note", note: note });
   } catch (error) {
     console.error(error.message);
     res.status(500).send("Internal Server Error");
