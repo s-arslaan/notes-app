@@ -5,7 +5,15 @@ function NoteItem(props) {
   return (
     <div className="col-md-3">
       <div className="card bg-dark my-3">
-        <div className="card-body">
+        <div className="d-flex justify-content-end position-absolute top-0 end-0">
+          <span className="badge bg-danger p-1">
+            <i className="fa-solid fa-trash-can mx-1"></i>
+          </span>
+          <span className="badge bg-success p-1">
+            <i className="fa-solid fa-pen-to-square mx-1"></i>
+          </span>
+        </div>
+        <div className="card-body my-2">
           <h5 className="card-title">{note.title}</h5>
           <p className="card-text">{note.description}</p>
         </div>
