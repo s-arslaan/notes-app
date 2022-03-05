@@ -20,7 +20,8 @@ const NoteState = (props) => {
       tag: "personal",
       date: "2022-02-13T18:49:43.440Z",
       __v: 0,
-    },{
+    },
+    {
       _id: "620952c72d6d0e17973c7454",
       user: "62066caf852fcaf3f9de2e71",
       title: "my title arslaan1",
@@ -28,7 +29,8 @@ const NoteState = (props) => {
       tag: "personal",
       date: "2022-02-13T18:49:43.440Z",
       __v: 0,
-    },{
+    },
+    {
       _id: "620952c72d6d0e17973c7455",
       user: "62066caf852fcaf3f9de2e71",
       title: "my title arslaan2",
@@ -36,7 +38,8 @@ const NoteState = (props) => {
       tag: "personal",
       date: "2022-02-13T18:49:43.440Z",
       __v: 0,
-    },{
+    },
+    {
       _id: "620952c72d6d0e17973c7456",
       user: "62066caf852fcaf3f9de2e71",
       title: "my title arslaan3",
@@ -44,7 +47,8 @@ const NoteState = (props) => {
       tag: "personal",
       date: "2022-02-13T18:49:43.440Z",
       __v: 0,
-    },{
+    },
+    {
       _id: "620952c72d6d0e17973c7457",
       user: "62066caf852fcaf3f9de2e71",
       title: "my title arslaan4",
@@ -52,7 +56,8 @@ const NoteState = (props) => {
       tag: "personal",
       date: "2022-02-13T18:49:43.440Z",
       __v: 0,
-    },{
+    },
+    {
       _id: "620952c72d6d0e17973c7458",
       user: "62066caf852fcaf3f9de2e71",
       title: "my title arslaan5",
@@ -64,8 +69,29 @@ const NoteState = (props) => {
   ];
   const [notes, setNotes] = useState(notesInitial);
 
+  // Add a Note
+  const addNote = (title, description, tag) => {
+    console.log("adding...");
+    const note = {
+      _id: "620952c72d6d0e17973c7459",
+      user: "62066caf852fcaf3f9de2e71",
+      title: title,
+      description: description,
+      tag: tag,
+      date: "2022-02-13T18:49:43.440Z",
+      __v: 0,
+    };
+    setNotes(notes.concat(note));
+  };
+
+  // Delete a Note
+  const deleteNote = () => {};
+
+  // Edit a Note
+  const editNote = () => {};
+
   return (
-    <NoteContext.Provider value={{ notes, setNotes }}>
+    <NoteContext.Provider value={{ notes, addNote, deleteNote, editNote }}>
       {props.children}
     </NoteContext.Provider>
   );
