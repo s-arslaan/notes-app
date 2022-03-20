@@ -6,7 +6,7 @@ function NoteItem(props) {
   const context = useContext(NoteContext);
   const { deleteNote } = context;
 
-  const { note } = props;
+  const { note, updateNote } = props;
 
   return (
     <div className="col-md-3">
@@ -21,7 +21,7 @@ function NoteItem(props) {
             ></i>
           </span>
           <span className="badge bg-success p-1">
-            <i className="fa-solid fa-pen-to-square mx-1"></i>
+            <i className="fa-solid fa-pen-to-square mx-1" onClick={()=>{updateNote(note)}}></i>
           </span>
         </div>
         <div className="card-body my-2">
