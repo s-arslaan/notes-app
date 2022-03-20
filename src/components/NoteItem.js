@@ -12,7 +12,7 @@ function NoteItem(props) {
     <div className="col-md-3">
       <div className="card bg-dark my-3">
         <div className="d-flex justify-content-end position-absolute top-0 end-0">
-          <span className="badge bg-danger p-1">
+          <span className="text-danger py-1">
             <i
               className="fa-solid fa-trash-can mx-1"
               onClick={() => {
@@ -20,7 +20,7 @@ function NoteItem(props) {
               }}
             ></i>
           </span>
-          <span className="badge bg-success p-1">
+          <span className="text-info py-1">
             <i className="fa-solid fa-pen-to-square mx-1" onClick={()=>{updateNote(note)}}></i>
           </span>
         </div>
