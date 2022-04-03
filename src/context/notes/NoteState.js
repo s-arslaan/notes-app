@@ -36,7 +36,6 @@ const NoteState = (props) => {
     });
 
     const json = await response.json();
-    console.log(json);
     setNotes(notes.concat(json));
   };
 
@@ -52,7 +51,6 @@ const NoteState = (props) => {
       },
     });
     const json = response.json();
-    console.log(json);
 
     console.log("deleting:" + id);
     const newNotes = notes.filter((note) => {
@@ -74,7 +72,6 @@ const NoteState = (props) => {
       body: JSON.stringify({ title, description, tag }),
     });
     const json = response.json();
-    console.log(json);
 
     // edit logic at client
     let newNotes = JSON.parse(JSON.stringify(notes));

@@ -72,7 +72,7 @@ function Notes() {
               <button ref={refClose} type="button" className="btn btn-secondary" data-bs-dismiss="modal">
                 Close
               </button>
-              <button type="button" className="btn btn-primary" onClick={handleClick}>
+              <button disabled={note.edit_title.length < 5 || note.edit_description.length < 5} type="button" className="btn btn-primary" onClick={handleClick}>
                 Save changes
               </button>
             </div>
@@ -84,6 +84,9 @@ function Notes() {
         <div className="mb-2">
           <h2 className="d-inline">Your Notes</h2>&emsp;
           <span className="align-middle float-end"><AddNote /></span>
+        </div>
+        <div className="container">
+          {notes.length == 0 && 'No notes Found!'}
         </div>
         {notes.map((note) => {
           return (
