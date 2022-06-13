@@ -27,9 +27,8 @@ function Login() {
     if (json.success) {
       // save auth-token and redirect
       localStorage.setItem("token", json.authToken);
-      history('/');
-    }
-    else {
+      history("/");
+    } else {
       alert("Invalid Credentials");
     }
   };
@@ -39,42 +38,48 @@ function Login() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div className="mb-3">
-        <label htmlFor="email" className="form-label">
-          Email address
-        </label>
-        <input
-          type="email"
-          name="email"
-          className="form-control"
-          value={credentials.email}
-          onChange={onChange}
-          id="email"
-          aria-describedby="emailHelp"
-        />
-        <div id="emailHelp" className="form-text">
-          We'll never share your email with anyone else.
+    <div className="container">
+      <div className="row mt-5 justify-content-md-center">
+        <div className="col-6">
+          <form onSubmit={handleSubmit}>
+            <div className="mb-3">
+              <label htmlFor="email" className="form-label">
+                Email address
+              </label>
+              <input
+                type="email"
+                name="email"
+                className="form-control"
+                value={credentials.email}
+                onChange={onChange}
+                id="email"
+                aria-describedby="emailHelp"
+              />
+              <div id="emailHelp" className="form-text">
+                We'll never share your email with anyone else.
+              </div>
+            </div>
+            <div className="mb-3">
+              <label htmlFor="password" className="form-label">
+                Password
+              </label>
+              <input
+                type="password"
+                name="password"
+                className="form-control"
+                value={credentials.password}
+                onChange={onChange}
+                id="password"
+              />
+            </div>
+
+            <button type="submit" className="btn btn-primary">
+              Login
+            </button>
+          </form>
         </div>
       </div>
-      <div className="mb-3">
-        <label htmlFor="password" className="form-label">
-          Password
-        </label>
-        <input
-          type="password"
-          name="password"
-          className="form-control"
-          value={credentials.password}
-          onChange={onChange}
-          id="password"
-        />
-      </div>
-
-      <button type="submit" className="btn btn-primary">
-        Submit
-      </button>
-    </form>
+    </div>
   );
 }
 
