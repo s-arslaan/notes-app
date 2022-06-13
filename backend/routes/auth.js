@@ -18,17 +18,18 @@ router.post(
       .isLength({ min: 7, max: 16 }),
   ],
   async (req, res) => {
+
     // error message sending
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-      return res.status(400).json({ errors: errors.array() });
+      return res.status(400).json({ success: false, errors: errors.array() });
     }
 
     try {
       // if there are errors, send Bad request and errors
       let user = await User.findOne({ email: req.body.email });
       if (user) {
-        return res.status(400).json({ error: "User already exists!" });
+        return res.status(400).json({ success: false, error: "User already exists!" });
       }
 
       const salt = await bcrypt.genSalt(10);
@@ -46,7 +47,7 @@ router.post(
       };
       const authToken = jwt.sign(data, JWT_SECRET);
       // console.log(jwtData)
-      res.json({ authToken });
+      res.json({ success: true, authToken });
     } catch (error) {
       console.error(error.message);
       res.status(500).send("Internal Server Error");
@@ -80,15 +81,15 @@ router.post(
       let user = await User.findOne({ email });
       if (!user) {
         return res
-          .status(400)
-          .json({ error: "Invalid Credentials (user !exists ) !" });
+          // .status(400)
+          .json({ success: false, error: "Invalid Credentials (user !exists ) !" });
       }
 
       const passCompare = await bcrypt.compare(password, user.password);
       if (!passCompare) {
         return res
-          .status(400)
-          .json({ error: "Invalid Credentials (invalid password) !" });
+          // .status(400)
+          .json({ success: false, error: "Invalid Credentials (invalid password) !" });
       }
 
       const data = {
@@ -98,7 +99,7 @@ router.post(
       };
       const authToken = jwt.sign(data, JWT_SECRET);
       // console.log(jwtData)
-      res.json({ authToken });
+      res.json({ success: true, authToken });
     } catch (error) {
       console.error(error.message);
       res.status(500).send("Internal Server Error");
