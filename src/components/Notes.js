@@ -3,7 +3,7 @@ import NoteContext from "../context/notes/NoteContext";
 import AddNote from "./AddNote";
 import NoteItem from "./NoteItem";
 
-function Notes() {
+function Notes(props) {
   const context = useContext(NoteContext);
   const { notes, getNotes, editNote } = context;
   useEffect(() => {
@@ -29,7 +29,7 @@ function Notes() {
     console.log('updating:',note);
     editNote(note.id, note.edit_title, note.edit_description, note.edit_tag);
     refClose.current.click();
-    
+    props.showAlert("Note Updated Successfully","success");
   };
 
   const onChange = (e) => {
@@ -83,14 +83,14 @@ function Notes() {
       <div className="row my-3">
         <div className="mb-2">
           <h2 className="d-inline">Your Notes</h2>&emsp;
-          <span className="align-middle float-end"><AddNote /></span>
+          <span className="align-middle float-end"><AddNote showAlert={props.showAlert}/></span>
         </div>
         <div className="container">
           {notes.length == 0 && 'No notes Found!'}
         </div>
         {notes.map((note) => {
           return (
-            <NoteItem key={note._id} updateNote={updateNote} note={note} />
+            <NoteItem key={note._id} updateNote={updateNote} note={note} showAlert={props.showAlert} />
           );
         })}
       </div>
