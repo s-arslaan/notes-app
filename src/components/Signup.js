@@ -15,26 +15,33 @@ function Signup(props) {
 
     const host = "http://localhost:5000";
     // API call
-    const { name, email, password } = details;
-    const response = await fetch(`${host}/api/auth/createUser`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ name, email, password }),
-    });
+    const { name, email, password, cpassword } = details;
 
-    const json = await response.json();
-    // console.log(json);
-
-    if (json.success) {
-      // save auth-token and redirect
-      localStorage.setItem("token", json.authToken);
-      navigate("/");
-      props.showAlert("Account Created Successfully", "success");
+    if (password !== cpassword) {
+      props.showAlert("Passwords does not match", "error");
     } else {
-      // alert(json.error);
-      props.showAlert(json.error, "error");
+      const response = await fetch(`${host}/api/auth/createUser`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ name, email, password }),
+      });
+
+      const json = await response.json();
+      // console.log(json);
+
+      if (json.success) {
+        // save auth-token and redirect
+        localStorage.setItem("token", json.authToken);
+        navigate("/");
+        props.showAlert("Account Created Successfully", "success");
+      } else {
+        // alert(json.error);
+        json.error != undefined
+          ? props.showAlert(json.error, "error")
+          : props.showAlert(json.errors[0].msg, "error");
+      }
     }
   };
 
@@ -53,7 +60,7 @@ function Signup(props) {
                 Name
               </label> */}
               <input
-              placeholder="Name"
+                placeholder="Name"
                 type="text"
                 name="name"
                 className="form-control"
@@ -68,7 +75,7 @@ function Signup(props) {
                 Email address
               </label> */}
               <input
-              placeholder="Email"
+                placeholder="Email"
                 type="email"
                 name="email"
                 className="form-control"
@@ -83,7 +90,7 @@ function Signup(props) {
                 Password
               </label> */}
               <input
-              placeholder="Password"
+                placeholder="Password"
                 type="password"
                 name="password"
                 className="form-control"
@@ -99,7 +106,7 @@ function Signup(props) {
                 Confirm Password
               </label> */}
               <input
-              placeholder="Confirm Password"
+                placeholder="Confirm Password"
                 type="password"
                 name="cpassword"
                 className="form-control"
