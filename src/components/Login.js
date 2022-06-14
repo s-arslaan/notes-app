@@ -28,11 +28,11 @@ function Login(props) {
       // save auth-token and redirect
       localStorage.setItem("token", json.authToken);
       history("/");
-      props.showAlert("Welcome "+json.name.toUpperCase(), "success");
+      props.showAlert("Welcome " + json.name.toUpperCase(), "success");
       // console.log(json);
     } else {
       // alert("Invalid Credentials");
-      props.showAlert(json.error, "error");
+      json.error != undefined ? props.showAlert(json.error, "error") : props.showAlert(json.errors[0].msg, "error");
     }
   };
 
@@ -43,13 +43,15 @@ function Login(props) {
   return (
     <div className="container">
       <div className="row mt-5 justify-content-md-center">
-        <div className="col-6">
+        <h2 className="display-2 text-center my-3">Login</h2>
+        <div className="col-md-6">
           <form onSubmit={handleSubmit}>
             <div className="mb-3">
-              <label htmlFor="email" className="form-label">
+              {/* <label htmlFor="email" className="form-label">
                 Email address
-              </label>
+              </label> */}
               <input
+              placeholder="Email"
                 type="email"
                 name="email"
                 className="form-control"
@@ -58,15 +60,13 @@ function Login(props) {
                 id="email"
                 aria-describedby="emailHelp"
               />
-              <div id="emailHelp" className="form-text">
-                We'll never share your email with anyone else.
-              </div>
             </div>
             <div className="mb-3">
-              <label htmlFor="password" className="form-label">
+              {/* <label htmlFor="password" className="form-label">
                 Password
-              </label>
+              </label> */}
               <input
+              placeholder="Password"
                 type="password"
                 name="password"
                 className="form-control"
@@ -76,7 +76,7 @@ function Login(props) {
               />
             </div>
 
-            <button type="submit" className="btn btn-primary">
+            <button type="submit" className="btn btn-primary mt-2">
               Login
             </button>
           </form>

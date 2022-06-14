@@ -45,13 +45,15 @@ function Signup(props) {
   return (
     <div className="container">
       <div className="row mt-5 justify-content-md-center">
-        <div className="col-6">
+        <h2 className="display-2 text-center my-3">Create Account</h2>
+        <div className="col-md-6">
           <form onSubmit={handleSubmit}>
             <div className="mb-3">
-              <label htmlFor="name" className="form-label">
+              {/* <label htmlFor="name" className="form-label">
                 Name
-              </label>
+              </label> */}
               <input
+              placeholder="Name"
                 type="text"
                 name="name"
                 className="form-control"
@@ -62,10 +64,11 @@ function Signup(props) {
               />
             </div>
             <div className="mb-3">
-              <label htmlFor="email" className="form-label">
+              {/* <label htmlFor="email" className="form-label">
                 Email address
-              </label>
+              </label> */}
               <input
+              placeholder="Email"
                 type="email"
                 name="email"
                 className="form-control"
@@ -76,10 +79,11 @@ function Signup(props) {
               />
             </div>
             <div className="mb-3">
-              <label htmlFor="password" className="form-label">
+              {/* <label htmlFor="password" className="form-label">
                 Password
-              </label>
+              </label> */}
               <input
+              placeholder="Password"
                 type="password"
                 name="password"
                 className="form-control"
@@ -91,10 +95,11 @@ function Signup(props) {
               />
             </div>
             <div className="mb-3">
-              <label htmlFor="cpassword" className="form-label">
+              {/* <label htmlFor="cpassword" className="form-label">
                 Confirm Password
-              </label>
+              </label> */}
               <input
+              placeholder="Confirm Password"
                 type="password"
                 name="cpassword"
                 className="form-control"
@@ -106,7 +111,7 @@ function Signup(props) {
               />
             </div>
 
-            <button type="submit" className="btn btn-primary">
+            <button type="submit" className="btn btn-primary mt-2">
               Signup
             </button>
           </form>

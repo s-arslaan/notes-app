@@ -97,14 +97,14 @@ function Notes(props) {
                       <label htmlFor="edit_description" className="form-label">
                         Description
                       </label>
-                      <input
-                        type="text"
+                      <textarea
                         className="form-control"
                         id="edit_description"
                         name="edit_description"
                         onChange={onChange}
-                        value={note.edit_description}
-                      />
+                        rows='5'
+                        defaultValue={note.edit_description}
+                      ></textarea>
                     </div>
                     <div className="mb-3">
                       <label htmlFor="edit_tag" className="form-label">
