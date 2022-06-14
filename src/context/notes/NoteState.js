@@ -13,12 +13,11 @@ const NoteState = (props) => {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        "auth-token":
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjIwNjZjYWY4NTJmY2FmM2Y5ZGUyZTcxIn0sImlhdCI6MTY0NDY3NjAwNH0.8wpu5fWwjfLlz3alSOD6z7ixoXozL8-Ooa5kYB01Xdc",
+        "auth-token": localStorage.getItem("token"),
       },
     });
     const json = await response.json();
-    console.log(json);
+    // console.log(json);
     setNotes(json);
   };
 
@@ -29,8 +28,7 @@ const NoteState = (props) => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "auth-token":
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjIwNjZjYWY4NTJmY2FmM2Y5ZGUyZTcxIn0sImlhdCI6MTY0NDY3NjAwNH0.8wpu5fWwjfLlz3alSOD6z7ixoXozL8-Ooa5kYB01Xdc",
+        "auth-token": localStorage.getItem("token"),
       },
       body: JSON.stringify({ title, description, tag }),
     });
@@ -46,13 +44,12 @@ const NoteState = (props) => {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
-        "auth-token":
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjIwNjZjYWY4NTJmY2FmM2Y5ZGUyZTcxIn0sImlhdCI6MTY0NDY3NjAwNH0.8wpu5fWwjfLlz3alSOD6z7ixoXozL8-Ooa5kYB01Xdc",
+        "auth-token": localStorage.getItem("token"),
       },
     });
     const json = response.json();
 
-    console.log("deleting:" + id);
+    // console.log("deleting:" + id);
     const newNotes = notes.filter((note) => {
       return note._id !== id;
     });
@@ -66,8 +63,7 @@ const NoteState = (props) => {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
-        "auth-token":
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjIwNjZjYWY4NTJmY2FmM2Y5ZGUyZTcxIn0sImlhdCI6MTY0NDY3NjAwNH0.8wpu5fWwjfLlz3alSOD6z7ixoXozL8-Ooa5kYB01Xdc",
+        "auth-token": localStorage.getItem("token"),
       },
       body: JSON.stringify({ title, description, tag }),
     });
@@ -89,7 +85,9 @@ const NoteState = (props) => {
   };
 
   return (
-    <NoteContext.Provider value={{ notes, addNote, deleteNote, editNote, getNotes }}>
+    <NoteContext.Provider
+      value={{ notes, addNote, deleteNote, editNote, getNotes }}
+    >
       {props.children}
     </NoteContext.Provider>
   );

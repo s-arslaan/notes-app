@@ -8,7 +8,7 @@ function Signup(props) {
     password: "",
     cpassword: "",
   });
-  let history = useNavigate();
+  let navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -30,7 +30,7 @@ function Signup(props) {
     if (json.success) {
       // save auth-token and redirect
       localStorage.setItem("token", json.authToken);
-      history("/");
+      navigate("/");
       props.showAlert("Account Created Successfully", "success");
     } else {
       // alert(json.error);
