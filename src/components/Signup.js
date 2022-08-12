@@ -13,7 +13,8 @@ function Signup(props) {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const host = "http://localhost:5000";
+    // const host = "http://localhost:5000";
+    const host = "https://ars-notes.herokuapp.com";
     // API call
     const { name, email, password, cpassword } = details;
 
@@ -38,7 +39,7 @@ function Signup(props) {
         props.showAlert("Account Created Successfully", "success");
       } else {
         // alert(json.error);
-        json.error != undefined
+        json.error !== undefined
           ? props.showAlert(json.error, "error")
           : props.showAlert(json.errors[0].msg, "error");
       }

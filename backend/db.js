@@ -1,10 +1,14 @@
+const dotenv = require("dotenv");
 const mongoose = require("mongoose");
-const mongoURI = "mongodb://localhost:27017/notes-app?readPreference=primary&appname=MongoDB%20Compass&ssl=false";
+
+// getting db path from env
+dotenv.config({path: './.env'});
+const mongoURI = process.env.MONGO_URI;
 
 const connectToMongo = () => {
-  mongoose.connect(mongoURI, () => {
+  mongoose.connect(mongoURI).then( () => {
     console.log("Connected to Mongo 💘");
-  });
+  }).catch((err) => console.log(err));
 };
 
 module.exports = connectToMongo;
