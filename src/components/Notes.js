@@ -15,6 +15,7 @@ function Notes(props) {
     } else {
       navigate("/login");
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const ref = useRef(null);
@@ -154,7 +155,7 @@ function Notes(props) {
               </span>
             </div>
             <div className="container">
-              {notes.length == 0 && "No notes Found!"}
+              {notes.length === 0 && "No notes Found!"}
             </div>
             {notes.map((note) => {
               return (

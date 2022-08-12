@@ -48,6 +48,7 @@ const NoteState = (props) => {
         "auth-token": localStorage.getItem("token"),
       },
     });
+    // eslint-disable-next-line
     const json = response.json();
 
     // console.log("deleting:" + id);
@@ -68,6 +69,7 @@ const NoteState = (props) => {
       },
       body: JSON.stringify({ title, description, tag }),
     });
+    // eslint-disable-next-line
     const json = response.json();
 
     // edit logic at client
