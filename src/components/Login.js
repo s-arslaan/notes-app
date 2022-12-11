@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+// const dotenv = require("dotenv");
+// getting db path from env
+// dotenv.config({ path: ".env" });
 
 function Login(props) {
     const [credentials, setCredentials] = useState({ email: "", password: "" });
@@ -9,7 +12,8 @@ function Login(props) {
         e.preventDefault();
 
         // const host = "http://localhost:5000";
-        const host = "https://ars-notes.herokuapp.com";
+        const host = process.env.REACT_APP_BACKEND_API;
+
         // API call
         const response = await fetch(`${host}/api/auth/login`, {
             method: "POST",

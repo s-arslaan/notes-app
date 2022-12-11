@@ -82,14 +82,16 @@ router.post(
       if (!user) {
         return res
           // .status(400)
-          .json({ success: false, error: "Invalid Credentials (user !exists ) !" });
+          // .json({ success: false, error: "Invalid Credentials (user !exists ) !" });
+          .json({ success: false, error: "Invalid Credentials!" });
       }
 
       const passCompare = await bcrypt.compare(password, user.password);
       if (!passCompare) {
         return res
           // .status(400)
-          .json({ success: false, error: "Invalid Credentials (invalid password) !" });
+          // .json({ success: false, error: "Invalid Credentials (invalid password) !" });
+          .json({ success: false, error: "Invalid Credentials!" });
       }
 
       const data = {
